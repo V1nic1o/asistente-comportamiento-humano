@@ -1,5 +1,8 @@
 const Intent = require('../models/Intent');
 
+// Categorías válidas (actualizadas)
+const VALID_TYPES = ['informativa', 'conversacional', 'solicitud', 'aclaracion', 'aprendizaje'];
+
 // Obtener todas las intenciones
 exports.getAllIntents = async (req, res) => {
   try {
@@ -19,14 +22,14 @@ exports.createIntent = async (req, res) => {
       return res.status(400).json({ message: 'Faltan campos obligatorios o el formato es incorrecto' });
     }
 
-    if (!['emocional', 'contextual', 'necesidad', 'flujo'].includes(type)) {
+    if (!VALID_TYPES.includes(type)) {
       return res.status(400).json({ message: 'Tipo de intención inválido' });
     }
 
     const newIntent = await Intent.create({
       tag,
       phrases,
-      response: response || null,
+      response: response || [],
       type
     });
 
@@ -44,7 +47,7 @@ exports.updateIntent = async (req, res) => {
 
     const { tag, phrases, response, type } = req.body;
 
-    if (type && !['emocional', 'contextual', 'necesidad', 'flujo'].includes(type)) {
+    if (type && !VALID_TYPES.includes(type)) {
       return res.status(400).json({ message: 'Tipo de intención inválido' });
     }
 

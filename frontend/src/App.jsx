@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import AdminChatbotTraining from './pages/AdminChatbotTraining';
 import AdminIntentFlow from './pages/AdminIntentFlow';
 import AdminInferenceRules from './pages/AdminInferenceRules'; // 👈 NUEVO
+import AdminUnknownPhrases from './pages/AdminUnknownPhrases';
 import ChatbotWidget from './components/chatbot/ChatbotWidget';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/admin/intent-flow" element={<AdminIntentFlow />} />
           <Route path="/admin/inference-rules" element={<AdminInferenceRules />} /> {/* 👈 NUEVA RUTA */}
           <Route path="/chatbot" element={<ChatbotWidget />} />
+          <Route path="/admin/unknown-phrases" element={<AdminUnknownPhrases />} />
         </Routes>
         <ToastContainer position="bottom-right" />
       </div>

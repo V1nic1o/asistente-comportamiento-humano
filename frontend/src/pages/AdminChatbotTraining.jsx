@@ -8,7 +8,7 @@ import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 function AdminChatbotTraining() {
   const [intents, setIntents] = useState([]);
   const [newTag, setNewTag] = useState('');
-  const [newType, setNewType] = useState('emocional');
+  const [newType, setNewType] = useState('conversacional');
   const [newPhrase, setNewPhrase] = useState('');
   const [newResponse, setNewResponse] = useState('');
   const [selectedIntentId, setSelectedIntentId] = useState(null);
@@ -40,7 +40,7 @@ function AdminChatbotTraining() {
       });
       toast.success('Intención creada');
       setNewTag('');
-      setNewType('emocional');
+      setNewType('conversacional');
       fetchIntents();
     } catch (err) {
       toast.error('Error al crear intención');
@@ -140,7 +140,7 @@ function AdminChatbotTraining() {
   return (
     <AdminLayout>
       <div className="container-fluid px-5 py-5">
-        <h2 className="text-center mb-5">🧠 Entrenamiento del Asistente de análisis de comportamiento humano</h2>
+        <h2 className="text-center mb-5">🤖 Entrenamiento del Agente Inteligente</h2>
         <div className="row justify-content-center g-4 mb-5">
           <div className="col-md-6">
             <div className="card p-4 shadow-sm">
@@ -157,10 +157,11 @@ function AdminChatbotTraining() {
                 value={newType}
                 onChange={(e) => setNewType(e.target.value)}
               >
-                <option value="emocional">Emocional</option>
-                <option value="contextual">Contextual</option>
-                <option value="necesidad">Necesidad</option>
-                <option value="flujo">Flujo estructural</option>
+                <option value="informativa">Informativa</option>
+                <option value="conversacional">Conversacional</option>
+                <option value="solicitud">Solicitud</option>
+                <option value="aclaracion">Aclaración</option>
+                <option value="aprendizaje">Aprendizaje</option>
               </select>
               <button className="btn btn-success mt-3 rounded-pill" onClick={handleCreateIntent}>
                 Crear intención

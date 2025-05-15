@@ -18,15 +18,15 @@ const Intent = sequelize.define('Intent', {
     defaultValue: [],
   },
   response: {
-  type: DataTypes.ARRAY(DataTypes.TEXT),
-  allowNull: true,
-  defaultValue: [],
-},
+    type: DataTypes.ARRAY(DataTypes.TEXT),
+    allowNull: true,
+    defaultValue: [],
+  },
   type: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isIn: [['emocional', 'contextual', 'necesidad', 'flujo']]
+      isIn: [['informativa', 'conversacional', 'solicitud', 'aclaracion', 'aprendizaje']]
     }
   }
 });

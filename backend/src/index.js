@@ -13,31 +13,32 @@ const PORT = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev')); // Log de peticiones (opcional)
+app.use(morgan('dev'));
 
 // Rutas
 const intentRoutes = require('./routes/intent.routes');
 const chatbotRoutes = require('./routes/chatbot.routes');
 const intentFlowRoutes = require('./routes/intentFlow.routes');
 const inferenceRoutes = require('./routes/inferenceRule.routes');
+const unknownPhraseRoutes = require('./routes/unknownPhrase.routes'); // ✅ asegúrate que exista
 
+// Prefijos
 app.use('/api/intents', intentRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/intent-flows', intentFlowRoutes);
 app.use('/api/inference-rules', inferenceRoutes);
+app.use('/api/unknown-phrases', unknownPhraseRoutes);
 
-// Fallback de rutas no encontradas
+// Fallback 404
 app.use((req, res) => {
   res.status(404).json({ message: 'Ruta no encontrada' });
 });
 
-// Conexión y arranque
+// Arranque
 async function startServer() {
   try {
     await sequelize.authenticate();
     console.log('✅ Conexión a la base de datos establecida');
-
-    // await sequelize.sync(); // Solo si no usas migraciones
 
     app.listen(PORT, () => {
       console.log(`🚀 Servidor escuchando en http://localhost:${PORT}`);

@@ -10,7 +10,13 @@ function AdminIntentFlow() {
   const [fromCategory, setFromCategory] = useState('');
   const [toCategory, setToCategory] = useState('');
 
-  const CATEGORIES = ['emocional', 'contextual', 'necesidad', 'flujo'];
+  const CATEGORIES = [
+  'informativa',
+  'conversacional',
+  'solicitud',
+  'aclaracion',
+  'aprendizaje',
+];
 
   useEffect(() => {
     setCategories(CATEGORIES);
